@@ -7,6 +7,7 @@ struct StatisticsView: View {
     
     @Environment(\.modelContext) private var modelContext
     
+    // We fetch the data sorted by date
     // Verileri tarihe göre sıralayarak çekiyoruz
     @Query(sort: \DailyPomodoro.date) private var dailyStats: [DailyPomodoro]
     
@@ -20,11 +21,13 @@ struct StatisticsView: View {
                 
                 VStack(spacing: 24) {
                     
+                    // Summary Card
                     // Özet Kartı
                     summaryCard
                         .padding(.horizontal)
                         .padding(.top, 16)
                     
+                    // Chart Area
                     // Grafik Alanı
                     if dailyStats.isEmpty {
                         emptyStateView
@@ -42,10 +45,11 @@ struct StatisticsView: View {
     
     // MARK: - Views
     
+    /// Summary card showing the total number of completed pomodoros.
     /// Toplam tamamlanan pomodoro sayısını gösteren özet kartı.
     private var summaryCard: some View {
         let totalCompleted = dailyStats.reduce(0) { $0 + $1.completedCount }
-        let totalFocusMinutes = totalCompleted * 25 // Varsayılan 25 dk. üzerinden hesaplama.
+        let totalFocusMinutes = totalCompleted * 25 // Calculation based on default 25 mins. // Varsayılan 25 dk. üzerinden hesaplama.
         
         return HStack {
             VStack(alignment: .leading, spacing: 8) {
@@ -74,6 +78,7 @@ struct StatisticsView: View {
         .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 2)
     }
     
+    /// Bar Chart drawn with SwiftUI Charts.
     /// SwiftUI Charts ile Çizilen Çubuk Grafik (Bar Chart).
     private var chartCard: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -86,7 +91,7 @@ struct StatisticsView: View {
                         x: .value("Tarih", stat.date, unit: .day),
                         y: .value("Oturum", stat.completedCount)
                     )
-                    .foregroundStyle(Color.orange.gradient) // Pastel turuncumuz
+                    .foregroundStyle(Color.orange.gradient) // Our pastel orange // Pastel turuncumuz
                     .cornerRadius(4)
                 }
             }
@@ -104,6 +109,7 @@ struct StatisticsView: View {
         .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 2)
     }
     
+    /// The empty screen state to show if there is no data yet.
     /// Eğer henüz hiç veri yoksa gösterilecek boş ekran durumu.
     private var emptyStateView: some View {
         VStack(spacing: 16) {
