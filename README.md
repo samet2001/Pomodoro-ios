@@ -38,20 +38,5 @@ pomodoro/
 *   Xcode 15.0+
 *   iOS 17.0+ Target
 
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/pomodoro-ios.git
-   ```
-2. Open `pomodoro.xcodeproj` in Xcode.
-3. Select your target simulator or device.
-4. Press `Cmd + R` to build and run the app.
 
-## Contributing 🤝
 
-Contributions, issues, and feature requests are welcome!
-Feel free to check [issues page](https://github.com/yourusername/pomodoro-ios/issues) if you want to contribute.
-
-## License 📝
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
