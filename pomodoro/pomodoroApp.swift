@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct pomodoroApp: App {
@@ -13,5 +14,7 @@ struct pomodoroApp: App {
         WindowGroup {
             ContentView()
         }
+        // Tüm uygulama genelinde veri tabanına (ModelContext) erişim sağlar.
+        .modelContainer(for: [TaskItem.self, DailyPomodoro.self])
     }
 }

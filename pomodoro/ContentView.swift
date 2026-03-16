@@ -9,13 +9,24 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            TimerView()
+                .tabItem {
+                    Label("Odaklan", systemImage: "timer")
+                }
+            
+            TaskListView()
+                .tabItem {
+                    Label("Görevler", systemImage: "checklist")
+                }
+            
+            StatisticsView()
+                .tabItem {
+                    Label("İstatistikler", systemImage: "chart.bar")
+                }
         }
-        .padding()
+        // Minimalist görünüm için accent rengini turuncu (Odak rengimiz) yapıyoruz.
+        .tint(.orange)
     }
 }
 
